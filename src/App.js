@@ -1,8 +1,8 @@
 import React, {useState, useEffect, useRef} from "react";
 import SideImg from "./SideImg";
 import MixedImg from "./MixedImg";
-import Slider from "./Toggles";
-import SideBar from "./SIdeBar";
+import Slider from "./slider";
+import ToggleSwitch from "./switch";
 import Img1 from "./images/galerii/IMG_6331.JPG";
 import Img2 from "./images/galerii/IMG_6557.JPG";
 import Img3 from "./images/galerii/IMG_6213.JPG";
@@ -17,7 +17,7 @@ function App() {
 
   const [layeredImages, setLayeredimages] = useState([]);
   const [opacity, setOpacity] = useState(90)
-  const [blendMode, setBlendMode] = useState("multiply")  //Set'imisega tegeleda
+  const [trueOverlayFalseMultiply, setTrueOverlayFalseMultiply] = useState(false)
   const [buttonVisibilities, setButtonVisibilities] = useState(Array(20).fill(false)) //Tuleb parast seadistada piltide arvu jargi
   const [trueAddFalseRemove, setTrueAddFalseRemove] = useState(true)
   const addButtonRefs = useRef([]);
@@ -70,6 +70,10 @@ function App() {
       })
     }
 
+  const handleSwitch = () => {
+    setTrueOverlayFalseMultiply((prev) => !prev)
+  }
+
   return (
     <>
     <div className="min-h-screen bg-[url('./images/newBG.png')] bg-cover">
@@ -79,7 +83,8 @@ function App() {
          trueAddFalseRemove={trueAddFalseRemove}/>
       </div>
       <Slider opacity={opacity} setOpacity={setOpacity}/>
-      <MixedImg images={layeredImages} opacity={opacity} blendMode={blendMode}/>
+      <ToggleSwitch trueOverlayFalseMultiply={trueOverlayFalseMultiply} handleSwitch={handleSwitch}/>
+      <MixedImg images={layeredImages} opacity={opacity} trueOverlayFalseMultiply={trueOverlayFalseMultiply}/>
     </div>
     </>
   );

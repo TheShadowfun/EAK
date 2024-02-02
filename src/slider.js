@@ -55,7 +55,7 @@ const Slider = ({ opacity, setOpacity }) => {
   const displayValue = Math.round(opacity);
 
   return (
-    <div className="fixed w-64 opacity-85 left-64 top-[92%]" ref={sliderRef}>
+    <div className="fixed w-64 opacity-85 left-72 top-[92%]" ref={sliderRef}>
       <div className="py-1 relative min-w-full">
         <div className="h-2 bg-zinc-700 rounded-full">
           <div className="absolute h-2 rounded-full bg-zinc-800" style={{ width: `${(opacity - 10) / 90 * 100}%` }}></div>
@@ -70,8 +70,8 @@ const Slider = ({ opacity, setOpacity }) => {
             <div className="relative -mt-2 w-1" ref={tooltipRef}>
               <div className="absolute z-40 opacity-100 bottom-100 mb-2" style={{ left: `calc(${opacity}% + ${getTooltipOffset()}px)`, marginLeft: '-20.5px' }}>
                 <div className="relative shadow-md">
-                  <div className="bg-black -mt-8 text-white truncate text-xs rounded py-1 px-4">{displayValue}</div>
-                  <svg className="absolute text-black w-full h-2 left-0 top-100" viewBox="0 0 255 255">
+                  <div className="bg-zinc-900 -mt-8 text-zinc-200 truncate text-xs rounded py-1 px-4">{displayValue}</div>
+                  <svg className="absolute text-zinc-900 w-full h-2 left-0 top-100" viewBox="0 0 255 255">
                     <polygon className="fill-current" points="0,0 127.5,127.5 255,0"></polygon>
                   </svg>
                 </div>
