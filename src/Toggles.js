@@ -55,7 +55,7 @@ const Slider = ({ opacity, setOpacity }) => {
   const displayValue = Math.round(opacity);
 
   return (
-    <div className="relative w-64 m-auto items-center -left-[245px] top-[91px] opacity-85" ref={sliderRef}>
+    <div className="fixed w-64 opacity-85 left-64 top-[92%]" ref={sliderRef}>
       <div className="py-1 relative min-w-full">
         <div className="h-2 bg-zinc-700 rounded-full">
           <div className="absolute h-2 rounded-full bg-zinc-800" style={{ width: `${(opacity - 10) / 90 * 100}%` }}></div>
