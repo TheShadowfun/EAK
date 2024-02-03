@@ -3,24 +3,25 @@ import SideImg from "./SideImg";
 import MixedImg from "./MixedImg";
 import Slider from "./slider";
 import ToggleSwitch from "./switch";
-import Img1 from "./images/galerii/IMG_6331.JPG";
-import Img2 from "./images/galerii/IMG_6557.JPG";
-import Img3 from "./images/galerii/IMG_6213.JPG";
-import Img4 from "./images/galerii/IMG_6506.JPG";
-import Img5 from "./images/galerii/IMG_6670.JPG";
 import transpImg from "./images/transparent.png"
 
 const soConditionalClassesDontGetPurged = ["bg-red-500", "active:bg-red-800", "border-l-red-500", "bg-green-500", "active:bg-green-800", "border-l-green-500", "mix-blend-multiply", "mix-blend-overlay"]
-const imagePaths = [] /*Kunagi votab kasutusele*/
-const sideImgs = [Img1, Img2, Img3, Img4, Img5, transpImg, Img1, Img2, Img3, Img4, Img5, transpImg, Img1, Img2, Img3, Img4, Img5, transpImg, Img1, Img2, Img3, Img4, Img5, transpImg]
+const sideImgs = []
+for (let i = 1 ; i <= 35 ; i++){
+  sideImgs.push(`https://shadowfun.tech/images/${i}.JPG`)
+  if (i % 5 == 0){
+    sideImgs.push(transpImg)
+  }
+}
 
 function App() {
 
   const [layeredImages, setLayeredimages] = useState([]);
   const [opacity, setOpacity] = useState(90)
   const [trueOverlayFalseMultiply, setTrueOverlayFalseMultiply] = useState(false)
-  const [buttonVisibilities, setButtonVisibilities] = useState(Array(20).fill(false)) //Tuleb parast seadistada piltide arvu jargi
+  const [buttonVisibilities, setButtonVisibilities] = useState(Array(35).fill(false)) //Tuleb parast seadistada piltide arvu jargi
   const [trueAddFalseRemove, setTrueAddFalseRemove] = useState(true)
+  const [infoOverlay, setInfoOverlay] = useState(false)
   const addButtonRefs = useRef([]);
 
   useEffect(() => {
