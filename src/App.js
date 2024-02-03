@@ -8,10 +8,11 @@ import Img2 from "./images/galerii/IMG_6557.JPG";
 import Img3 from "./images/galerii/IMG_6213.JPG";
 import Img4 from "./images/galerii/IMG_6506.JPG";
 import Img5 from "./images/galerii/IMG_6670.JPG";
+import transpImg from "./images/transparent.png"
 
 const soConditionalClassesDontGetPurged = ["bg-red-500", "active:bg-red-800", "border-l-red-500", "bg-green-500", "active:bg-green-800", "border-l-green-500", "mix-blend-multiply", "mix-blend-overlay"]
 const imagePaths = [] /*Kunagi votab kasutusele*/
-const sideImgs = [Img1, Img2, Img3, Img4, Img5]
+const sideImgs = [Img1, Img2, Img3, Img4, Img5, transpImg, Img1, Img2, Img3, Img4, Img5, transpImg, Img1, Img2, Img3, Img4, Img5, transpImg, Img1, Img2, Img3, Img4, Img5, transpImg]
 
 function App() {
 
@@ -59,6 +60,7 @@ function App() {
   const handleImageClick = ({target}) => {
       setButtonVisibilities((prev) => {
         const newArr = Array(20).fill(false);
+        if (target.src === transpImg){return prev}
         if (layeredImages.includes(sideImgs[target.id])) {
           setTrueAddFalseRemove(false)
         }
