@@ -3,6 +3,7 @@ import SideImg from "./SideImg";
 import MixedImg from "./MixedImg";
 import Slider from "./slider";
 import ToggleSwitch from "./switch";
+import InfoOverlay from "./InfoOverlay"
 import transpImg from "./images/transparent.png"
 
 const soConditionalClassesDontGetPurged = ["bg-red-500", "active:bg-red-800", "border-l-red-500", "bg-green-500", "active:bg-green-800", "border-l-green-500", "mix-blend-multiply", "mix-blend-overlay"]
@@ -19,7 +20,7 @@ function App() {
   const [layeredImages, setLayeredimages] = useState([]);
   const [opacity, setOpacity] = useState(90)
   const [trueOverlayFalseMultiply, setTrueOverlayFalseMultiply] = useState(false)
-  const [buttonVisibilities, setButtonVisibilities] = useState(Array(35).fill(false)) //Tuleb parast seadistada piltide arvu jargi
+  const [buttonVisibilities, setButtonVisibilities] = useState(Array(42).fill(false))
   const [trueAddFalseRemove, setTrueAddFalseRemove] = useState(true)
   const [infoOverlay, setInfoOverlay] = useState(false)
   const addButtonRefs = useRef([]);
@@ -77,6 +78,10 @@ function App() {
     setTrueOverlayFalseMultiply((prev) => !prev)
   }
 
+  const handleInfoButtonClick = () => {
+    setInfoOverlay((prev) => !prev)
+  }
+
   return (
     <>
     <div className="min-h-screen bg-[url('./images/newBG.png')] bg-cover">
@@ -85,6 +90,7 @@ function App() {
          handleImageClick={handleImageClick} buttonVisibilities={buttonVisibilities} addButtonRefs={addButtonRefs}
          trueAddFalseRemove={trueAddFalseRemove}/>
       </div>
+      <InfoOverlay handleInfoButtonClick={handleInfoButtonClick} infoOverlay={infoOverlay} />
       <Slider opacity={opacity} setOpacity={setOpacity}/>
       <ToggleSwitch trueOverlayFalseMultiply={trueOverlayFalseMultiply} handleSwitch={handleSwitch}/>
       <MixedImg images={layeredImages} opacity={opacity} trueOverlayFalseMultiply={trueOverlayFalseMultiply}/>
