@@ -1,10 +1,15 @@
-function InfoOverlay({handleInfoButtonClick, infoOverlay}) {
+function InfoOverlay({handleInfoButtonClick, infoOverlay, resetButton}) {
     
     /*Jube lahendus, ma tean*/const invisChar = "‎‎‎‎‎‎‎‎ㅤ‎‎‎‎‎‎‎‎ㅤ‎‎‎‎‎‎‎‎ㅤ‎‎‎‎‎‎‎‎ㅤ‎‎‎‎‎‎‎‎ㅤ‎‎‎‎‎‎‎‎ㅤ‎‎‎‎‎‎‎‎ㅤ‎‎‎‎‎‎‎‎ㅤ‎‎‎‎‎‎‎‎ㅤ‎‎‎‎‎‎‎‎ㅤ‎‎‎‎‎‎‎‎ㅤ‎‎‎‎‎‎ㅤ"
+    
+    const handleClick = () => {
+        handleInfoButtonClick();
+        resetButton();
+    }
 
     return (
         <div>
-            <button onClick={handleInfoButtonClick} className="fixed left-[380px] top-0 bg-zinc-900 rounded-lg p-2 m-1 opacity-80 active:bg-zinc-800 z-50">
+            <button onClick={handleClick} className="fixed left-[380px] top-0 bg-[#ba0000] rounded-lg p-2 m-1 opacity-70 active:bg-red-700 z-50">
                 <span className=" text-zinc-100">Kuidas kasutada & projektist</span>
             </button>
 

@@ -1,27 +1,7 @@
 import React, { useRef } from "react";
 import AddButton from "./Addbutton";
 
-function SideImg({images, handleButtonClick, handleImageClick, buttonVisibilities, addButtonRefs ,trueAddFalseRemove}) {
-
-    const scrollContainer = useRef(null)
-
-    const scroll = (direction) => {
-        if (direction === 'up') {
-          if (Number(scrollContainer.current.scrollTop) === 0) {
-            scrollContainer.current.scrollBy({ top: 4602, behavior: 'smooth' }); //See vaartus teha oigeks numbriks ~(153,4 * num_images-1)
-          }
-          else {
-            scrollContainer.current.scrollBy({ top: -767, behavior: 'smooth' });
-          }
-        } else {
-            if (Number(scrollContainer.current.scrollTop) > 4000) { //See vaartus teha oigeks numbriks (153,4 * num_images - 100) sest safety
-                scrollContainer.current.scrollBy({ top: -99999, behavior: 'smooth' })
-            }
-            else {
-                scrollContainer.current.scrollBy({ top: 767, behavior: 'smooth' });
-            }
-        }
-      };
+function SideImg({images, handleButtonClick, handleImageClick, buttonVisibilities, addButtonRefs ,trueAddFalseRemove, scroll, scrollContainer}) {
 
     return (
     <div className="fixed h-full w-[212px] top-0 right-0 justify-items-end bg-black bg-opacity-10">

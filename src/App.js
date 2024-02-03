@@ -82,15 +82,44 @@ function App() {
     setInfoOverlay((prev) => !prev)
   }
 
+  const scrollContainer = useRef(null)
+
+  const scroll = (direction) => {
+      if (direction === 'up') {
+        if (Number(scrollContainer.current.scrollTop) === 0) {
+          scrollContainer.current.scrollBy({ top: 4602, behavior: 'smooth' }); //See vaartus teha oigeks numbriks ~(153,4 * num_images-1)
+        }
+        else {
+          scrollContainer.current.scrollBy({ top: -767, behavior: 'smooth' });
+        }
+      } else {
+          if (Number(scrollContainer.current.scrollTop) > 4000) { //See vaartus teha oigeks numbriks (153,4 * num_images - 100) sest safety
+              scrollContainer.current.scrollBy({ top: -9999, behavior: 'smooth' })
+          }
+          else {
+              scrollContainer.current.scrollBy({ top: 767, behavior: 'smooth' });
+          }
+      }
+    };
+
+  const resetButton = () => {
+    setLayeredimages(() => []);
+    setOpacity(() => 90);
+    setButtonVisibilities(() => Array(42).fill(false));
+    setTrueAddFalseRemove(() => true);
+    setTrueOverlayFalseMultiply(() => true);
+    scrollContainer.current.scrollBy({ top: -9999, behavior: 'smooth' })
+  }
+
   return (
     <>
     <div className="min-h-screen bg-[url('./images/newBG.png')] bg-cover">
       <div>
         <SideImg images={sideImgs} handleButtonClick={handleButtonClick}
          handleImageClick={handleImageClick} buttonVisibilities={buttonVisibilities} addButtonRefs={addButtonRefs}
-         trueAddFalseRemove={trueAddFalseRemove}/>
+         trueAddFalseRemove={trueAddFalseRemove} scroll={scroll} scrollContainer={scrollContainer}/>
       </div>
-      <InfoOverlay handleInfoButtonClick={handleInfoButtonClick} infoOverlay={infoOverlay} />
+      <InfoOverlay handleInfoButtonClick={handleInfoButtonClick} infoOverlay={infoOverlay} resetButton={resetButton} />
       <Slider opacity={opacity} setOpacity={setOpacity}/>
       <ToggleSwitch trueOverlayFalseMultiply={trueOverlayFalseMultiply} handleSwitch={handleSwitch}/>
       <MixedImg images={layeredImages} opacity={opacity} trueOverlayFalseMultiply={trueOverlayFalseMultiply}/>
